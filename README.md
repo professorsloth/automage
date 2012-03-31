@@ -13,7 +13,7 @@ Yesh. It's built with jQuery 1.7.1. You'll need that for it to work.
 So how do I use it?
 -------------------
 Just include it.
-    <script src="automage.js"></script>
+`<script src="automage.js"></script>`
 
 So how does it work?
 --------------------------
