@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	function createPhotoContainers(){
 		$("body").append("<div id=\"darken\"><div id=\"photo\"></div></div>");
 		$("#darken").css({
@@ -21,31 +21,31 @@ $(document).ready(function(){
 			"text-align": "center"
 		});
 	}
-	
+
 	function hidePhotoContainers(){
 		$("#darken").fadeOut(150);
 	}
-	
+
 	function showPhotoContainers(){
 		$("#darken").fadeIn(150);
 	}
-	
+
 	function adaptPhoto() {
 		var photo = $("#photo");
-	
+
 		var windowHeight = $(window).height();
 		var windowWidth = $(window).width();
 		var photoHeight = photo.find("img").height();
 		var photoWidth = photo.find("img").width();
-		
+
 		var offsetTop = $(document).scrollTop();
 		photo.css("top", offsetTop);
 	}
-	
+
 	// Photo and darkening background appears when a photo thumbnail is clicked
 	$(document).on("click", "a img", function(e){
 		e.preventDefault();
-		
+
 		imgSrc = $(this).closest("a").attr("href");
 		imgAlt = $(this).attr("alt");
 		$("#photo").css({
@@ -55,37 +55,37 @@ $(document).ready(function(){
 		showPhotoContainers();
 		$(document).trigger("scroll");
 	});
-	
+
 	// They disappear when the background is clicked...
 	$(document).on("click", "#darken", function(){
 		hidePhotoContainers();
 	});
-	
+
 	// ...or when the photo itself is clicked...
 	$(document).on("click", "#photo", function(){
 		hidePhotoContainers();
 	});
-	
+
 	// ...or when ESC is pressed.
 	$(document).keydown( function(e){
 		if( e.keyCode == 27 ) {
 			hidePhotoContainers();
 		}
 	});
-	
+
 	// Make the divs follow scroll
 	$(document).scroll(function(){
 		$("#darken").css( "top", $(this).scrollTop() );
 		$("#darken").css( "left", $(this).scrollLeft() );
-		
+
 		adaptPhoto();
 	});
-	
+
 	// Update photo size/location when window is resized
 	$(window).resize(function(){
 		adaptPhoto();
 	});
-	
+
 	createPhotoContainers();
-	
+
 });
