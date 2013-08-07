@@ -1,91 +1,98 @@
 $(document).ready(function(){
+	createPhotoContainers(startListen);
+});
 
-	function createPhotoContainers(){
-		$("body").append("<div id=\"darken\"><div id=\"photo\"></div></div>");
-		$("#darken").css({
-			"display": "none",
-			"z-index": 1,
-			"background": "rgba(0,0,0,0.8)",
-			"position": "absolute",
-			"left": 0,
-			"top": 0,
-			"width": "100%",
-			"height": "100%"
-		});
-		$("#photo").css({
-			"background-position": "center",
-			"background-repeat": "no-repeat",
-			"background-size": "contain",
-			"width": "100%",
-			"height": "100%",
-			"text-align": "center"
-		});
-	}
+function createPhotoContainers(callback){
+  $("body").append("<div id=\"darken\"><div id=\"photo\"></div></div>");
+  $("#darken").css({
+    "display": "none",
+    "z-index": 1,
+    "background": "rgba(0,0,0,0.8)",
+    "position": "absolute",
+    "left": 0,
+    "top": 0,
+    "width": "100%",
+    "height": "100%"
+  });
+  $("#photo").css({
+    "background-position": "center",
+    "background-repeat": "no-repeat",
+    "background-size": "contain",
+    "width": "100%",
+    "height": "100%",
+    "text-align": "center"
+  });
 
-	function hidePhotoContainers(){
-		$("#darken").fadeOut(150);
-	}
+  typeof callback == "function" ? callback() : null;
+}
 
-	function showPhotoContainers(){
-		$("#darken").fadeIn(150);
-	}
+function hidePhotoContainers(){
+  $("#darken").fadeOut(150);
+}
 
-	function adaptPhoto() {
-		var photo = $("#photo");
+function showPhotoContainers(){
+  $("#darken").fadeIn(150);
+}
 
-		var windowHeight = $(window).height();
-		var windowWidth = $(window).width();
-		var photoHeight = photo.find("img").height();
-		var photoWidth = photo.find("img").width();
+function adaptPhoto() {
+  var photo = $("#photo");
 
-		var offsetTop = $(document).scrollTop();
-		photo.css("top", offsetTop);
-	}
+  var windowHeight = $(window).height();
+  var windowWidth = $(window).width();
+  var photoHeight = photo.find("img").height();
+  var photoWidth = photo.find("img").width();
 
-	// Photo and darkening background appears when a photo thumbnail is clicked
-	$(document).on("click", "a img", function(e){
-		e.preventDefault();
+  var offsetTop = $(document).scrollTop();
+  photo.css("top", offsetTop);
+}
 
-		imgSrc = $(this).closest("a").attr("href");
-		imgAlt = $(this).attr("alt");
-		$("#photo").css({
-			"background-image": "url('"+imgSrc+"')",
-		});
-		adaptPhoto();
-		showPhotoContainers();
-		$(document).trigger("scroll");
-	});
+// Photo and darkening background appears when a photo thumbnail is clicked
 
-	// They disappear when the background is clicked...
-	$(document).on("click", "#darken", function(){
-		hidePhotoContainers();
-	});
+function startListen(callback){
+  $(document).on("click", "a img", function(e){
+    e.preventDefault();
 
-	// ...or when the photo itself is clicked...
-	$(document).on("click", "#photo", function(){
-		hidePhotoContainers();
-	});
+    imgSrc = $(this).closest("a").attr("href");
+    imgAlt = $(this).attr("alt");
+    $("#photo").css({
+      "background-image": "url('"+imgSrc+"')",
+    });
 
-	// ...or when ESC is pressed.
-	$(document).keydown( function(e){
-		if( e.keyCode == 27 ) {
-			hidePhotoContainers();
-		}
-	});
 
-	// Make the divs follow scroll
-	$(document).scroll(function(){
-		$("#darken").css( "top", $(this).scrollTop() );
-		$("#darken").css( "left", $(this).scrollLeft() );
+    adaptPhoto();
+    showPhotoContainers();
+    $(document).trigger("scroll");
 
-		adaptPhoto();
-	});
+    typeof callback == "function" ? callback() : null;
+  });
+}
 
-	// Update photo size/location when window is resized
-	$(window).resize(function(){
-		adaptPhoto();
-	});
+// They disappear when the background is clicked...
+$(document).on("click", "#darken", function(){
+  hidePhotoContainers();
+});
 
-	createPhotoContainers();
+// ...or when the photo itself is clicked...
+$(document).on("click", "#photo", function(){
+  hidePhotoContainers();
+});
 
+// ...or when ESC is pressed.
+$(document).keydown( function(e){
+  if( e.keyCode == 27 ) {
+    hidePhotoContainers();
+  }
+});
+
+// Make the divs follow scroll
+$(document).scroll(function(){
+  $("#darken").css( "top", $(this).scrollTop() );
+  $("#darken").css( "left", $(this).scrollLeft() );
+
+  adaptPhoto();
+});
+
+// Update photo size/location when window is resized
+$(window).resize(function(){
+  adaptPhoto();
 });
