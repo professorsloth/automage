@@ -21,6 +21,6 @@ It will look for an element with a class "am-target-container" and then for an i
 
 Ex:
 
-<div class="am-target-container">
-  <img class="am-target" src="cat.png" alt="cat" />
-</div>
+`<div class="am-target-container">`<br />
+    `<img class="am-target" src="cat.png" alt="cat" />`<br />
+`</div>`
