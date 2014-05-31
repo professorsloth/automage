@@ -46,13 +46,13 @@ function adaptPhoto() {
   photo.css("top", offsetTop);
 }
 
-// Photo and darkening background appears when a automage target cotainer is clicked
+// Photo and darkening background appears when a automage target container is clicked
 
 function startListen(callback){
   $(document).on("click", ".am-target-container", function(e){
     e.preventDefault();
 
-    imgSrc = $(this).children('img').first().attr("src");
+    imgSrc = $(this).children('.am-target').first().attr("src");
     imgAlt = $(this).attr("alt");
     $("#photo").css({
       "background-image": "url('"+imgSrc+"')",
