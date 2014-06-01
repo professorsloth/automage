@@ -1,3 +1,7 @@
+var images = [];
+var currentImage = 0;
+var totalImages = 0;
+
 $(document).ready(function(){
 	createPhotoContainers(startListen);
 });
@@ -49,15 +53,26 @@ function adaptPhoto() {
 // Photo and darkening background appears when a automage target container is clicked
 
 function startListen(callback){
-  $(document).on("click", ".am-target-container", function(e){
+  $(document).on("click", ".am-target-container img.am-target", function(e){
     e.preventDefault();
 
-    imgSrc = $(this).children('.am-target').first().attr("src");
+    container = $(this).parent();
+    imgSrc = $(this).attr("src");
     imgAlt = $(this).attr("alt");
+
     $("#photo").css({
-      "background-image": "url('"+imgSrc+"')",
+      "background-image": "url('"+imgSrc+"')"
     });
 
+    if ( $(container).hasClass('am-slider') ) {
+      $(container).children('.am-target').each( function(){
+        images.push($(this).attr('src'))
+        currentImage = $.inArray(imgSrc, images);
+        totalImages = images.length;
+      });
+
+      listenForSlides();
+    }
 
     adaptPhoto();
     showPhotoContainers();
@@ -83,6 +98,25 @@ $(document).keydown( function(e){
     hidePhotoContainers();
   }
 });
+
+// slider + right arrow
+function listenForSlides() {
+  $(document).keydown( function(e){
+    if( e.keyCode == 39 ) {
+      if(currentImage == totalImages){
+        currentImage = 0;
+      }else {
+        currentImage += 1;
+      }
+
+      console.log('next slide: ' + images[currentImage]);
+
+      $("#photo").css({
+        "background-image": "url('"+images[currentImage]+"')"
+      });
+    }
+  });
+}
 
 // Make the divs follow scroll
 $(document).scroll(function(){
