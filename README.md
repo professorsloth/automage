@@ -22,7 +22,7 @@ It will look for an element with a class "am-target-container" and then for an i
 Ex:
 
 `<div class="am-target-container">`<br />
-    `<img class="am-target" src="cat.png" alt="cat" />`<br />
+&nbsp;&nbsp;`<img class="am-target" src="cat.png" alt="cat" />`<br />
 `</div>`
 
 Activating sliding ability between images is done by adding the `am-slider` class to the `am-target-container` element.
@@ -30,9 +30,9 @@ Activating sliding ability between images is done by adding the `am-slider` clas
 Ex:
 
 `<div class="am-target-container am-slider">`<br />
-    `<img class="am-target" src="cat1.png" alt="cat" />`<br />
-    `<img class="am-target" src="cat2.png" alt="cat" />`<br />
-    `<img class="am-target" src="cat3.png" alt="cat" />`<br />
+&nbsp;&nbsp;`<img class="am-target" src="cat1.png" alt="cat" />`<br />
+&nbsp;&nbsp;`<img class="am-target" src="cat2.png" alt="cat" />`<br />
+&nbsp;&nbsp;`<img class="am-target" src="cat3.png" alt="cat" />`<br />
 `</div>`
 
 Todo
