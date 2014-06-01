@@ -29,6 +29,8 @@ Ex:
 
 ````
 
+####Slider
+
 Activating sliding ability between images is done by adding the `am-slider` class to the `am-target-container` element.
 
 Ex:
