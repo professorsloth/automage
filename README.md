@@ -24,3 +24,8 @@ Ex:
 `<div class="am-target-container">`<br />
     `<img class="am-target" src="cat.png" alt="cat" />`<br />
 `</div>`
+
+Todo
+--------------------------
+- ability to have seperate src from thumbnail to large image, ie. clicking image1-small.png displays image1-large.png
+- image slider
