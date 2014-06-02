@@ -17,5 +17,34 @@ Just include it.
 
 So how does it work?
 --------------------------
-It will look for `<a href="path/to/image"> <img src="path/to/thumbnail" alt="" /> </a>` and display `path/to/image` as a layer above everything else instead of taking you to the image itself.
+It will look for an element with a class "am-target-container" and then for an image with the class "am-target", which it will display as a layer above everything else.
 
+Ex:
+
+
+````
+<div class="am-target-container">
+    <img class="am-target" src="cat.png" alt="cat" />
+</div>
+
+````
+
+####Slider
+
+Activating sliding ability between images is done by adding the `am-slider` class to the `am-target-container` element.
+
+Ex:
+
+````
+<div class="am-target-container am-slider">
+    <img class="am-target" src="cat1.png" alt="cat" />
+    <img class="am-target" src="cat2.png" alt="cat" />
+    <img class="am-target" src="cat3.png" alt="cat" />
+</div>
+
+````
+
+Todo
+--------------------------
+- Ability to have seperate src from thumbnail to large image, ie. clicking image1-small.png displays image1-large.png
+- Debug and fix the image slider
