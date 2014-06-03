@@ -102,15 +102,22 @@ $(document).keydown( function(e){
 // slider + right arrow
 function listenForSlides() {
   $(document).keydown( function(e){
-    if( e.keyCode == 39 ) {
+    switch(e.keyCode) {
+    case 39:
       currentImage == totalImages ? currentImage = 0 : currentImage += 1;
-
-      $("#photo").css({
-        "background-image": "url('"+images[currentImage]+"')"
-      });
-
-      adaptPhoto();
+      break;
+    case 37:
+      currentImage == 0 ? currentImage = totalImages : currentImage -= 1;
+      break;
+    default:
+      break;
     }
+
+    $("#photo").css({
+      "background-image": "url('"+images[currentImage]+"')"
+    });
+
+    adaptPhoto();
   });
 }
 
