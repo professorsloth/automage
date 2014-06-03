@@ -1,6 +1,6 @@
 var images = [];
 var currentImage = 0;
-var totalImages = 0;
+var totalImages;
 
 $(document).ready(function(){
 	createPhotoContainers(startListen);
@@ -68,7 +68,7 @@ function startListen(callback){
       $(container).children('.am-target').each( function(){
         images.push($(this).attr('src'))
         currentImage = $.inArray(imgSrc, images);
-        totalImages = images.length;
+        totalImages = images.length - 1;
       });
 
       listenForSlides();
@@ -103,17 +103,15 @@ $(document).keydown( function(e){
 function listenForSlides() {
   $(document).keydown( function(e){
     if( e.keyCode == 39 ) {
-      if(currentImage == totalImages){
-        currentImage = 0;
-      }else {
-        currentImage += 1;
-      }
+      currentImage == totalImages ? currentImage = 0 : currentImage += 1;
 
-      console.log('next slide: ' + images[currentImage]);
+     console.log(currentImage);
 
       $("#photo").css({
         "background-image": "url('"+images[currentImage]+"')"
       });
+
+      adaptPhoto();
     }
   });
 }
