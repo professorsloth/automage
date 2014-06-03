@@ -64,7 +64,7 @@ function startListen(callback){
       "background-image": "url('"+imgSrc+"')"
     });
 
-    if ( $(container).hasClass('am-slider') ) {
+    if ( $(container).hasClass('am-slider') && images.length < 1 ) {
       $(container).children('.am-target').each( function(){
         images.push($(this).attr('src'))
         currentImage = $.inArray(imgSrc, images);
