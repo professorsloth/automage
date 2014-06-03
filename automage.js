@@ -105,8 +105,6 @@ function listenForSlides() {
     if( e.keyCode == 39 ) {
       currentImage == totalImages ? currentImage = 0 : currentImage += 1;
 
-     console.log(currentImage);
-
       $("#photo").css({
         "background-image": "url('"+images[currentImage]+"')"
       });
