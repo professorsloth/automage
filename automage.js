@@ -1,6 +1,6 @@
 var images = [];
 var currentImage = 0;
-var totalImages = 0;
+var totalImages;
 
 $(document).ready(function(){
 	createPhotoContainers(startListen);
@@ -64,11 +64,11 @@ function startListen(callback){
       "background-image": "url('"+imgSrc+"')"
     });
 
-    if ( $(container).hasClass('am-slider') ) {
+    if ( $(container).hasClass('am-slider') && images.length < 1 ) {
       $(container).children('.am-target').each( function(){
         images.push($(this).attr('src'))
         currentImage = $.inArray(imgSrc, images);
-        totalImages = images.length;
+        totalImages = images.length - 1;
       });
 
       listenForSlides();
@@ -102,19 +102,22 @@ $(document).keydown( function(e){
 // slider + right arrow
 function listenForSlides() {
   $(document).keydown( function(e){
-    if( e.keyCode == 39 ) {
-      if(currentImage == totalImages){
-        currentImage = 0;
-      }else {
-        currentImage += 1;
-      }
-
-      console.log('next slide: ' + images[currentImage]);
-
-      $("#photo").css({
-        "background-image": "url('"+images[currentImage]+"')"
-      });
+    switch(e.keyCode) {
+    case 39:
+      currentImage == totalImages ? currentImage = 0 : currentImage += 1;
+      break;
+    case 37:
+      currentImage == 0 ? currentImage = totalImages : currentImage -= 1;
+      break;
+    default:
+      break;
     }
+
+    $("#photo").css({
+      "background-image": "url('"+images[currentImage]+"')"
+    });
+
+    adaptPhoto();
   });
 }
 
