@@ -6,6 +6,8 @@ What is Automage?
 Automage is a lightweight alternative to lightbox.
 The goal is to keep it free from configuration, while providing a tasty way of showing images on a website.
 
+![demo](http://erickhoury.com/automage.gif)
+
 Are there any dependencies?
 ---------------------------
 Yesh. It's built with jQuery 1.7.1. You'll need that for it to work.
