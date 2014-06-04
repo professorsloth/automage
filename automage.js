@@ -115,11 +115,7 @@ function listenForSlides() {
       break;
     }
 
-    $("#photo").css({
-      "background-image": "url('"+images[currentImage]+"')"
-    });
-
-    adaptPhoto();
+    $('#photo').css('background-image', 'url(' + images[currentImage] + ')').css('transition', 'background .2s linear');
   });
 }
 
