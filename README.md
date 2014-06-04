@@ -60,5 +60,4 @@ Ex:
 
 Todo
 --------------------------
-- Ability to have seperate src from thumbnail to large image, ie. clicking image1-small.png displays image1-large.png
-- Debug and fix the image slider
+- slider: clicking visual arrows instead of actually clicking the arrows? (wat)
