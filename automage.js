@@ -57,7 +57,7 @@ function startListen(callback){
     e.preventDefault();
 
     container = $(this).parent();
-    imgSrc = $(this).attr("src");
+    imgSrc = $(this).data('large') ? $(this).data('large') : $(this).attr('src');
     imgAlt = $(this).attr("alt");
 
     $("#photo").css({
@@ -66,7 +66,9 @@ function startListen(callback){
 
     if ( $(container).hasClass('am-slider') && images.length < 1 ) {
       $(container).children('.am-target').each( function(){
-        images.push($(this).attr('src'))
+        images.push(
+          ( $(this).data('large') ? $(this).data('large') : $(this).attr('src') )
+        )
         currentImage = $.inArray(imgSrc, images);
         totalImages = images.length - 1;
       });
@@ -113,11 +115,7 @@ function listenForSlides() {
       break;
     }
 
-    $("#photo").css({
-      "background-image": "url('"+images[currentImage]+"')"
-    });
-
-    adaptPhoto();
+    $('#photo').css('background-image', 'url(' + images[currentImage] + ')').css('transition', 'background .2s linear');
   });
 }
 
